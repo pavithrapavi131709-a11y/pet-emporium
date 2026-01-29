@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3 class="section-title">Admin Dashboard</h3>
+<div class="features-section">
+    <div class="features-grid">
+        <div class="feature-card">
+            <h3>Users</h3>
+            <p>{{ users_count }}</p>
+        </div>
+        <div class="feature-card">
+            <h3>Products</h3>
+            <p>{{ products_count }}</p>
+        </div>
+        <div class="feature-card">
+            <h3>Appointments</h3>
+            <p>{{ appointments_count }}</p>
+        </div>
+        <div class="feature-card">
+            <h3>Services</h3>
+            <p>{{ services_count }}</p>
+        </div>
+    </div>
+    </div>
+<div class="features-section">
+    <h2>Recent Appointments</h2>
+    <div class="features-grid">
+        {% for a in recent_appointments %}
+        <div class="feature-card">
+            <h3>{{ a['name'] }}</h3>
+            <p>{{ a['pet'] }} — {{ a['date'] }}</p>
+        </div>
+        {% else %}
+        <div class="feature-card">
+            <p>No recent appointments</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
