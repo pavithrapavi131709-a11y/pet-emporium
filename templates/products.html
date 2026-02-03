@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Pet Products</h2>
+
+<div class="filter-section">
+    <h3>Filter Products</h3>
+    <div class="filters">
+        <div class="filter-group">
+            <label>Pet Type:</label>
+            <a href="/products" class="filter-btn {% if not selected_pet %}active{% endif %}">All</a>
+            <a href="/products?pet_type=Dog" class="filter-btn {% if selected_pet == 'Dog' %}active{% endif %}">🐶 Dogs</a>
+            <a href="/products?pet_type=Cat" class="filter-btn {% if selected_pet == 'Cat' %}active{% endif %}">🐱 Cats</a>
+            <a href="/products?pet_type=Both" class="filter-btn {% if selected_pet == 'Both' %}active{% endif %}">Both</a>
+        </div>
+        <div class="filter-group">
+            <label>Category:</label>
+            <a href="/products{% if selected_pet %}?pet_type={{ selected_pet }}{% endif %}" class="filter-btn {% if not selected_category %}active{% endif %}">All</a>
+            <a href="/products?{% if selected_pet %}pet_type={{ selected_pet }}&{% endif %}category=Food" class="filter-btn {% if selected_category == 'Food' %}active{% endif %}">Food</a>
+            <a href="/products?{% if selected_pet %}pet_type={{ selected_pet }}&{% endif %}category=Accessories" class="filter-btn {% if selected_category == 'Accessories' %}active{% endif %}">Accessories</a>
+            <a href="/products?{% if selected_pet %}pet_type={{ selected_pet }}&{% endif %}category=Grooming" class="filter-btn {% if selected_category == 'Grooming' %}active{% endif %}">Grooming</a>
+        </div>
+    </div>
+</div>
+
+{% if items %}
+<div class="products">
+    {% for item in items %}
+    <div class="card">
+        <img src="{{ item.image_url or 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=800' }}" alt="{{ item.name }}" onerror="this.src='https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=800'">
+        <div class="card-badge">{{ item.pet_type }}</div>
+        <h3>{{ item.name }}</h3>
+        <p class="category">{{ item.category }}</p>
+        <p class="price">₹ {{ item.price }}</p>
+        <a href="/add-to-cart/{{ item.id }}">Add to Cart</a>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p class="no-products">No products found. Try adjusting your filters.</p>
+{% endif %}
+
+{% endblock %}

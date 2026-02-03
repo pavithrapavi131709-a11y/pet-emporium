@@ -1,0 +1,861 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* Luxury background image */
+    background: url('https://images.unsplash.com/photo-1551730459-92db2a308d6a?q=80&w=2000') no-repeat center center fixed;
+    background-size: cover;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Glassmorphism / Luxury Container Style */
+.container, .features-section, .values-section, .cta-section {
+    position: relative;
+    z-index: 1;
+}
+
+/* Add an overlay to body to ensure readability if image is too bright/busy */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.85); /* White overlay */
+    z-index: -1;
+}
+
+nav {
+    background: #1a1a1a; /* Dark luxury header */
+    padding: 15px 30px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+nav a {
+    color: #f1c40f; /* Gold accent */
+    margin-right: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.05em;
+    transition: color 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: #f1c40f;
+    transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+nav a:hover {
+    color: white;
+}
+
+.container {
+    padding: 40px;
+    flex: 1; /* Pushes footer down */
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* FOOTER */
+footer {
+    background: #1a1a1a;
+    color: #ecf0f1;
+    padding: 60px 20px;
+    text-align: center;
+    margin-top: auto;
+    border-top: 4px solid #f1c40f;
+}
+
+footer h4 {
+    color: #f1c40f;
+    margin-bottom: 20px;
+    font-size: 1.3em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 30px;
+    text-align: left;
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+footer ul li {
+    margin-bottom: 10px;
+}
+
+footer a {
+    color: #bdc3c7;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: #f1c40f;
+}
+
+/* ... existing code ... */
+
+.hero-text h2 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-size: 2.2em;
+    font-family: 'Playfair Display', serif; /* Elegant font for headings */
+}
+
+.features-section h2, .values-section h2, .cta-section h2 {
+    font-family: 'Playfair Display', serif;
+}
+
+/* ... */
+
+.cta-section {
+    text-align: center;
+    margin: 60px 0;
+    padding: 60px 30px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2c3e50 100%); /* Dark luxury gradient */
+    border-radius: 12px;
+    color: white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.cta-button {
+    display: inline-block;
+    background: #f1c40f;
+    color: #1a1a1a;
+    padding: 15px 35px;
+    border-radius: 50px; /* Rounded pill buttons */
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(241, 196, 15, 0.4);
+    background: white;
+}
+
+/* ... */
+
+.card a, button {
+    display: inline-block;
+    margin-top: 10px;
+    background: #1a1a1a;
+    color: #f1c40f;
+    padding: 12px 25px;
+    border-radius: 50px; /* Consistent pill shape */
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border: 1px solid #1a1a1a;
+    cursor: pointer;
+    width: 100%;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    letter-spacing: 0.5px;
+}
+
+.card a:hover, button:hover {
+    background: #f1c40f;
+    color: #1a1a1a;
+    border-color: #f1c40f;
+}
+
+.card .price {
+    font-size: 22px;
+    font-weight: bold;
+    color: #c0392b; /* Premium red for price */
+    margin: 10px 0;
+    font-family: 'Playfair Display', serif;
+}
+
+footer .copyright {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #34495e;
+    color: #7f8c8d;
+    font-size: 0.9em;
+}
+
+/* HOME / ABOUT */
+.about-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.about-header h1 {
+    font-size: 2.5em;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.tagline {
+    font-size: 1.2em;
+    color: #7f8c8d;
+    font-style: italic;
+}
+
+.hero {
+    display: flex;
+    gap: 30px;
+    margin: 40px 0;
+    align-items: center;
+}
+
+.hero.reverse {
+    flex-direction: row-reverse;
+}
+
+.hero img {
+    width: 50%;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.hero-text {
+    font-size: 18px;
+    line-height: 1.8;
+    flex: 1;
+}
+
+.hero-text h2 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-size: 1.8em;
+}
+
+.hero-text p {
+    margin-bottom: 15px;
+    color: #34495e;
+}
+
+.features-section {
+    margin: 60px 0;
+    padding: 40px 0;
+    background: white;
+    border-radius: 12px;
+    padding: 40px;
+}
+
+.features-section h2 {
+    text-align: center;
+    color: #2c3e50;
+    font-size: 2em;
+    margin-bottom: 30px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.feature-card {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.feature-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.feature-card h3 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-size: 1.3em;
+}
+
+.feature-card p {
+    color: #555;
+    line-height: 1.6;
+    font-size: 15px;
+}
+
+.values-section {
+    margin: 60px 0;
+    padding: 40px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 12px;
+    color: white;
+}
+
+.values-section h2 {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 30px;
+    color: white;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.value-item {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 25px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.value-item h3 {
+    margin-bottom: 12px;
+    font-size: 1.3em;
+}
+
+.value-item p {
+    line-height: 1.6;
+    opacity: 0.95;
+}
+
+/* Removed duplicate cta-section */
+
+/* PRODUCTS */
+.filter-section {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.filter-section h3 {
+    margin-top: 0;
+    color: #2c3e50;
+    font-size: 1.3em;
+}
+
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    align-items: center;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.filter-group label {
+    font-weight: bold;
+    color: #34495e;
+    margin-right: 5px;
+}
+
+.filter-btn {
+    padding: 8px 16px;
+    background: #ecf0f1;
+    color: #2c3e50;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.filter-btn:hover {
+    background: #bdc3c7;
+    transform: translateY(-2px);
+}
+
+.filter-btn.active {
+    background: #27ae60;
+    color: white;
+    border-color: #229954;
+}
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.card-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #3498db;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.card h3 {
+    color: #2c3e50;
+    margin: 10px 0 5px 0;
+    font-size: 1.1em;
+    min-height: 2.4em;
+}
+
+.card .category {
+    color: #7f8c8d;
+    font-size: 13px;
+    margin: 5px 0;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+/* Removed duplicate card price/button */
+
+.no-products {
+    text-align: center;
+    padding: 60px 20px;
+    color: #7f8c8d;
+    font-size: 1.2em;
+    background: white;
+    border-radius: 10px;
+}
+
+/* FORM STYLES */
+form {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="date"],
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box; /* Ensures padding doesn't affect width */
+    font-size: 16px;
+    transition: border 0.3s;
+}
+
+input:focus, select:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+/* CART - LUXURY REDESIGN */
+.cart-header {
+    margin-bottom: 30px;
+    border-bottom: 2px solid #ecf0f1;
+    padding-bottom: 15px;
+}
+
+.cart-header h2 {
+    font-family: 'Playfair Display', serif;
+    color: #2c3e50;
+    font-size: 2.2em;
+    margin: 0;
+}
+
+.cart-layout {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.cart-items {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.cart-summary {
+    flex: 1;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 20px;
+}
+
+.cart-summary h3 {
+    margin-top: 0;
+    color: #2c3e50;
+    font-family: 'Playfair Display', serif;
+    border-bottom: 2px solid #f1c40f;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    color: #555;
+    font-size: 1.1em;
+}
+
+.summary-row.total {
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+    margin-top: 15px;
+    font-weight: bold;
+    color: #2c3e50;
+    font-size: 1.4em;
+}
+
+.cart-item {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: transform 0.2s;
+}
+
+.cart-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.cart-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+.cart-item-details {
+    flex: 1;
+}
+
+.cart-item h4 {
+    margin: 0 0 8px 0;
+    color: #2c3e50;
+    font-size: 1.2em;
+}
+
+.cart-item .price {
+    color: #c0392b;
+    font-weight: bold;
+    font-size: 1.2em;
+    margin: 0;
+}
+
+.checkout-btn {
+    width: 100%;
+    background: #27ae60;
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.checkout-btn:hover {
+    background: #219150;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+}
+
+.clear-cart-btn {
+    display: block;
+    text-align: center;
+    color: #e74c3c;
+    text-decoration: none;
+    margin-top: 15px;
+    font-size: 0.9em;
+    font-weight: 600;
+}
+
+.clear-cart-btn:hover {
+    text-decoration: underline;
+}
+
+.cart-empty-state {
+    text-align: center;
+    padding: 60px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.cart-empty-state h3 {
+    color: #2c3e50;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+
+.continue-shopping-btn {
+    display: inline-block;
+    background: #f1c40f;
+    color: #1a1a1a;
+    padding: 12px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 20px;
+    transition: all 0.3s;
+}
+
+.continue-shopping-btn:hover {
+    background: #d4ac0d;
+    transform: translateY(-2px);
+}
+
+/* GROOMING - LUXURY REDESIGN */
+.grooming-hero {
+    text-align: center;
+    margin-bottom: 50px;
+    padding: 40px;
+    background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.9)), url('https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=1200');
+    background-size: cover;
+    background-position: center;
+    border-radius: 15px;
+    color: white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.grooming-hero h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3em;
+    margin-bottom: 15px;
+    color: #f1c40f;
+}
+
+.grooming-hero p {
+    font-size: 1.2em;
+    max-width: 700px;
+    margin: 0 auto;
+    opacity: 0.9;
+}
+
+.section-title {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    color: #2c3e50;
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: #f1c40f;
+    margin: 15px auto 0;
+}
+
+.grooming-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.service-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+.service-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.service-card:hover img {
+    transform: scale(1.05);
+}
+
+.service-details {
+    padding: 25px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.service-card h4 {
+    margin: 0 0 10px 0;
+    color: #2c3e50;
+    font-size: 1.4em;
+    font-family: 'Playfair Display', serif;
+}
+
+.service-card p {
+    color: #555;
+    font-size: 0.95em;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    flex: 1;
+}
+
+.service-card .price {
+    font-weight: bold;
+    color: #c0392b;
+    font-size: 1.2em;
+    align-self: flex-start;
+}
+
+.appointment-section {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.appointment-info {
+    flex: 1;
+    background: #2c3e50;
+    color: white;
+    padding: 40px;
+    min-width: 300px;
+}
+
+.appointment-info h3 {
+    font-family: 'Playfair Display', serif;
+    color: #f1c40f;
+    font-size: 2em;
+    margin-top: 0;
+}
+
+.appointment-form-container {
+    flex: 1.5;
+    padding: 40px;
+    min-width: 300px;
+}
+
+.book-btn {
+    width: 100%;
+    background: #2c3e50;
+    color: #f1c40f;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 10px;
+}
+
+.book-btn:hover {
+    background: #34495e;
+    transform: translateY(-2px);
+}
+

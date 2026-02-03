@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="grooming-hero">
+    <h2>Professional Pet Grooming</h2>
+    <p>Treat your furry friend to a luxurious spa day. Our certified groomers provide top-tier care with love and gentleness.</p>
+</div>
+
+<div class="grooming-services">
+    <h3 class="section-title">Our Services</h3>
+    <div class="grooming-grid">
+        {% for service in services %}
+        <div class="service-card">
+            {% if service.image_url %}
+            <img src="{{ service.image_url }}" alt="{{ service.name }}" onerror="this.src='https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=800'">
+            {% else %}
+            <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=800" alt="{{ service.name }}">
+            {% endif %}
+            <div class="service-details">
+                <h4>{{ service.name }}</h4>
+                {% if service.description %}
+                <p>{{ service.description }}</p>
+                {% endif %}
+                <span class="price">₹ {{ service.price }}</span>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="appointment-section">
+    <div class="appointment-info">
+        <h3>Book an Appointment</h3>
+        <p>Ready to pamper your pet? Select a service and choose a convenient date.</p>
+        <ul style="list-style: none; padding: 0; margin-top: 30px;">
+            <li style="margin-bottom: 15px;">✅ Certified Professional Groomers</li>
+            <li style="margin-bottom: 15px;">✅ Organic & Hypoallergenic Products</li>
+            <li style="margin-bottom: 15px;">✅ Stress-Free Environment</li>
+            <li style="margin-bottom: 15px;">✅ All Breeds & Sizes Welcome</li>
+        </ul>
+    </div>
+    
+    <div class="appointment-form-container">
+        {% if booked %}
+        <div class="success-message" style="text-align: center; padding: 30px; background: #d4edda; color: #155724; border-radius: 8px;">
+            <h3 style="margin-top: 0;">✅ Appointment Booked!</h3>
+            <p>We have received your request. See you soon!</p>
+            <button onclick="window.location.href='/grooming'" class="book-btn" style="background: #27ae60; color: white;">Book Another</button>
+        </div>
+        {% else %}
+        <form method="post" style="box-shadow: none; padding: 0; max-width: 100%;">
+            <div class="form-group">
+                <label>Pet Name</label>
+                <input type="text" name="pet_name" placeholder="e.g., Max" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Select Service</label>
+                <select name="service_id" required>
+                    <option value="">Choose a pampering session...</option>
+                    {% for service in services %}
+                    <option value="{{ service.id }}">{{ service.name }} - ₹{{ service.price }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Preferred Date</label>
+                <input type="date" name="date" required>
+            </div>
+            
+            <button type="submit" class="book-btn">Confirm Booking</button>
+        </form>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}
