@@ -1,1 +1,1 @@
-web: gunicorn app:app
+web: gunicorn aws_app:application
