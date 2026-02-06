@@ -3,10 +3,17 @@ import sqlite3
 import os
 from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
+import boto3
+import json
 
 app = Flask(__name__)
 application = app  # AWS Elastic Beanstalk looks for 'application' callable
 app.secret_key = "supersecretkey"
+
+# AWS SNS Configuration
+# Replace 'arn:aws:sns:region:account-id:topic-name' with your actual SNS Topic ARN
+SNS_TOPIC_ARN = os.environ.get('SNS_TOPIC_ARN', 'arn:aws:sns:region:account-id:topic-name')
+AWS_REGION = os.environ.get('AWS_REGION', 'us-east-1')
 
 def init_db_if_missing():
     if not os.path.exists("database.db"):
@@ -38,6 +45,24 @@ def admin_required(f):
         return f(*args, **kwargs)
     return wrapper
 
+# AWS SNS Helper Function
+def send_sns_notification(subject, message):
+    """Sends a notification to the configured AWS SNS topic."""
+    if SNS_TOPIC_ARN == 'arn:aws:sns:region:account-id:topic-name':
+        print("SNS Topic ARN not configured. Skipping notification.")
+        return
+
+    try:
+        sns = boto3.client('sns', region_name=AWS_REGION)
+        response = sns.publish(
+            TopicArn=SNS_TOPIC_ARN,
+            Message=message,
+            Subject=subject
+        )
+        print(f"SNS Notification sent: {response['MessageId']}")
+    except Exception as e:
+        print(f"Error sending SNS notification: {e}")
+
 # AUTH
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -61,6 +86,13 @@ def register():
             )
             conn.commit()
             user = conn.execute("SELECT id, username FROM users WHERE username = ?", (username,)).fetchone()
+            
+            # Send SNS Notification for new user
+            send_sns_notification(
+                subject="New User Registration",
+                message=f"New user registered: {username}"
+            )
+            
         except sqlite3.IntegrityError:
             conn.close()
             return render_template("register.html", error="Username already exists. Please choose another.")
@@ -172,6 +204,24 @@ def clear_cart():
 # CHECKOUT
 @app.route('/checkout', methods=['POST'])
 def checkout():
+    cart_ids = session.get('cart', [])
+    if cart_ids:
+        # Calculate total and get item names for notification
+        conn = get_db()
+        query = f"SELECT name, price FROM products WHERE id IN ({','.join('?'*len(cart_ids))})"
+        items = conn.execute(query, cart_ids).fetchall()
+        conn.close()
+        
+        total = sum(item['price'] for item in items)
+        item_names = ", ".join([item['name'] for item in items])
+        username = session.get('username', 'Guest')
+        
+        # Send SNS Notification for new order
+        send_sns_notification(
+            subject="New Order Received",
+            message=f"User: {username}\nItems: {item_names}\nTotal: ${total:.2f}"
+        )
+
     session.pop('cart', None)
     return render_template("cart.html", items=[], total=0, checkout_success=True)
 
@@ -183,6 +233,15 @@ def grooming():
     conn.close()
     
     if request.method == 'POST':
+        # Send SNS Notification for grooming booking
+        username = session.get('username', 'Guest')
+        service_id = request.form.get('service_id') # Assuming form sends this, or just general booking
+        
+        send_sns_notification(
+            subject="New Grooming Appointment",
+            message=f"User: {username} has requested a grooming appointment."
+        )
+        
         return render_template("grooming.html", booked=True, services=services)
     return render_template("grooming.html", booked=False, services=services)
 
