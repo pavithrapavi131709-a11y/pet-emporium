@@ -12,7 +12,7 @@ app.secret_key = "supersecretkey"
 
 # AWS SNS Configuration
 # Replace 'arn:aws:sns:region:account-id:topic-name' with your actual SNS Topic ARN
-SNS_TOPIC_ARN = os.environ.get('SNS_TOPIC_ARN', 'arn:aws:sns:region:account-id:topic-name')
+SNS_TOPIC_ARN = os.environ.get('SNS_TOPIC_ARN', 'arn:aws:sns:us-east-1:727646474213:pet_emporium')
 AWS_REGION = os.environ.get('AWS_REGION', 'us-east-1')
 
 def init_db_if_missing():
